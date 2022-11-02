@@ -35,4 +35,4 @@ export default class Filter extends Component {
   }
 }
 
-Filter.propTypes={onInput:func.isRequired, };
+// Filter.propTypes={onInput:func.isRequired, };

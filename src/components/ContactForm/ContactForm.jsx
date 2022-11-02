@@ -1,19 +1,31 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class ContactForm extends Component {
-    
+  state = { number: '', name: '' };
+
+  handleSubmit = (e) => {e.preventDefault();
+    this.props.onSubmit(this.state)
+  this.setState({number: '', name: ''})}
+
+  handleChange = e => {
+    const{name}=e.target
+    console.log(name)
+     this.setState({ [name]: e.target.value });
+  };
+
   render() {
-    const {onBtnClick,onInput, name, number}=this.props
+    const { number } = this.state;
     return (
-        <form action="" className="w-50">
+      <form action="" className="w-50" onSubmit={this.handleSubmit}>
+        {/* ставимо на форму onSubmit={this.handleSubmit} а на батон не вішаємо по */}
         {/* Name input */}
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Name
           </label>
           <input
-            onChange={onInput}
-            value={name}
+            onChange={this.handleChange}
+            value={this.state.name}
             type="text"
             className="form-control"
             name="name"
@@ -33,9 +45,9 @@ export default class ContactForm extends Component {
           <label htmlFor="phone" className="form-label">
             Phone
           </label>
-          <input  
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            onChange={onInput}
+          <input
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            onChange={this.handleChange}
             value={number}
             type="tel"
             className="form-control"
@@ -45,18 +57,15 @@ export default class ContactForm extends Component {
             required
           />
           <div id="emailHelp" className="form-text">
-          Phone number must be digits and can contain spaces, dashes, parentheses and can start with +
+            Phone number must be digits and can contain spaces, dashes,
+            parentheses and can start with +
           </div>
         </div>
-        
-        <button
-          onClick={onBtnClick}
-          type="button"
-          className="btn btn-primary"
-        >
+
+        <button type="submit" className="btn btn-primary">
           Add contact
         </button>
       </form>
-    )
+    );
   }
 }
