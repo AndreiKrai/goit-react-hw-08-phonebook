@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 
 export default class ContactForm extends Component {
   state = { number: '', name: '' };
@@ -7,12 +9,13 @@ export default class ContactForm extends Component {
     this.props.onSubmit(this.state)
   this.setState({number: '', name: ''})}
 
-  handleChange = e => {
+  handleChange  = e => {
     const{name}=e.target
     console.log(name)
      this.setState({ [name]: e.target.value });
   };
 
+  
   render() {
     const { number } = this.state;
     return (
@@ -69,3 +72,5 @@ export default class ContactForm extends Component {
     );
   }
 }
+
+ContactForm.propType={onSubmit:PropTypes.func.isRequired}

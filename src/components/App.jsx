@@ -42,12 +42,12 @@ export default class App extends Component {
   };
   handleChange = e => {
     const { name } = e.target;
-    console.log(name);
+    // console.log(name);
     this.setState({ [name]: e.target.value });
   };
 
   handleRemoveContact = id => {
-    console.log(id);
+    // console.log(id);
     this.setState(prevState => {
       return {
         contacts: prevState.contacts.filter(contact => contact.id !== id),
