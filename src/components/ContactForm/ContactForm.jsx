@@ -1,25 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 
-export default class ContactForm extends Component {
-  state = { number: '', name: '' };
+export const   ContactForm = ({onSubmit})=> {
+  // state = { number: '', name: '' };
+  const[number,setNumber]=useState('');
+  const[name,setName]=useState('');
 
-  handleSubmit = (e) => {e.preventDefault();
-    this.props.onSubmit(this.state)
-  this.setState({number: '', name: ''})}
 
-  handleChange  = e => {
-    const{name}=e.target
-    console.log(name)
-     this.setState({ [name]: e.target.value });
-  };
+  const handleSubmit = (e) => {e.preventDefault();
+    onSubmit(name,number)
+    setNumber('');
+    setName('');
+    }
+
+    const handleChange  = e => {
+        const{name}=e.target
+        switch (name){
+          case "number":setNumber(e.target.value);break;
+          case "name":setName(e.target.value);break;
+default: break}}
+  // handleChange  = e => {
+  //   const{name}=e.target
+  //   console.log(name)
+  //    setState({ [name]: e.target.value });
+  // };
 
   
-  render() {
-    const { number } = this.state;
+
     return (
-      <form action="" className="w-50" onSubmit={this.handleSubmit}>
+      <form action="" className="w-50" onSubmit={handleSubmit}>
         {/* ставимо на форму onSubmit={this.handleSubmit} а на батон не вішаємо по */}
         {/* Name input */}
         <div className="mb-3">
@@ -27,8 +38,8 @@ export default class ContactForm extends Component {
             Name
           </label>
           <input
-            onChange={this.handleChange}
-            value={this.state.name}
+            onChange={handleChange}
+            value={name}
             type="text"
             className="form-control"
             name="name"
@@ -50,7 +61,7 @@ export default class ContactForm extends Component {
           </label>
           <input
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            onChange={this.handleChange}
+            onChange={handleChange}
             value={number}
             type="tel"
             className="form-control"
@@ -71,6 +82,6 @@ export default class ContactForm extends Component {
       </form>
     );
   }
-}
+
 
 ContactForm.propType={onSubmit:PropTypes.func.isRequired}

@@ -1,10 +1,6 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class Filter extends Component {
-  render() {
-    const { onInput, filter } = this.props;
-    // console.log("filter", filter)
+export const Filter =({onInput, filter})=> {
     return (
       <form action="" className="w-50">
         {/* Name input */}
@@ -32,7 +28,7 @@ export default class Filter extends Component {
       </form>
     );
   }
-}
+
 
 Filter.propTypes = {
   onInput: PropTypes.func.isRequired,
