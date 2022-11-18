@@ -4,10 +4,9 @@ import {Filter} from './Filter/Filter';
 import {ContactForm} from './ContactForm/ContactForm';
 import { addContact,removeContact, setFilter } from 'redux/Slice/PhoneBookSlice';
 import { nanoid } from 'nanoid';
-import { autoBatchEnhancer } from '@reduxjs/toolkit';
 export const App = () => {
-  const CONTACTS_LOCAL_STORAGE = 'contactList';
-  const contactLocalStorage = localStorage.getItem(CONTACTS_LOCAL_STORAGE);
+  // const CONTACTS_LOCAL_STORAGE = 'contactList';
+  // const contactLocalStorage = localStorage.getItem(CONTACTS_LOCAL_STORAGE);
 
   // const [contacts, setContacts] = useState([]);
   // const [filter, setFilter] = useState('');
