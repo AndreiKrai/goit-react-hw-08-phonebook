@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 export const Filter =({onInput, filter})=> {
     return (
-      <form action="" className="w-50">
+      <form action=""  >
         {/* Name input */}
         <div className="mb-3">
           <label htmlFor="filter" className="form-label">

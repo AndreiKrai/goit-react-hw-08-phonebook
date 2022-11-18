@@ -30,7 +30,7 @@ default: break}}
   
 
     return (
-      <form action="" className="w-50" onSubmit={handleSubmit}>
+      <form action="" className="" onSubmit={handleSubmit}>
         {/* ставимо на форму onSubmit={this.handleSubmit} а на батон не вішаємо по */}
         {/* Name input */}
         <div className="mb-3">

@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function ContactList({ contacts, onBtnClick }) {
-  // console.log(contacts);
+  console.log(contacts);
 
   // const onDeleteBtnClick = ()=>{onBtnClick(contact.name)}
   return contacts.map(contact => {
-    const style = { display: 'flex', alignItems: 'baseline' };
+    const style = { display: 'flex', alignItems: 'center',justifyContent: "space-between" };
     return (
-      <div key={contact.id} style={style}>
+      <div key={contact.id} style={style}  >
         <p style={{ marginRight: '25px' }}>
           {contact.name}:{contact.number}
         </p>
