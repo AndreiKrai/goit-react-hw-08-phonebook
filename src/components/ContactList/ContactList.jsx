@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function ContactList({ contacts, onBtnClick }) {
-  console.log(contacts);
 
   // const onDeleteBtnClick = ()=>{onBtnClick(contact.name)}
   return contacts.map(contact => {

@@ -33,7 +33,6 @@ export const App = () => {
 
 
 const handleAddContact=(name, number)=>{
-  console.log(contacts)
   const isExist = contacts.find(user => user.name === name);
     if (!isExist) {
     const newContact = {name,number, id:nanoid()}

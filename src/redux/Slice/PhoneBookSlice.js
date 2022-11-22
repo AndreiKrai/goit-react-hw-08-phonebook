@@ -1,14 +1,16 @@
+import { createSlice } from "@reduxjs/toolkit";
 
-const { createSlice } = require('@reduxjs/toolkit');
 
-const phoneBookInitialState = { contacts: [], filter: '' };
 
-export const usersSlice = createSlice({
-  name: 'phoneBook',
-  initialState: phoneBookInitialState,
+const initialState = { 
+  contacts: [], 
+  filter: '' };
+
+export const contactsSlice = createSlice({
+  name: 'contacts',
+  initialState,
   reducers: {
     addContact: (state, action) => {
-      console.log('state', { ...state.contacts });
       state.contacts.push(action.payload);
     },
     removeContact: (state, action) =>
@@ -17,5 +19,5 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { addContact, setFilter, removeContact } = usersSlice.actions;
-export const phoneBookReduser = usersSlice.reducer;
+export const { addContact, setFilter, removeContact } = contactsSlice.actions;
+export const contactsReduser = contactsSlice.reducer;
