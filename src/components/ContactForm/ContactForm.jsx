@@ -8,8 +8,10 @@ export const ContactForm = ({ onSubmit }) => {
   // state = { number: '', name: '' };
   const [number, setNumber] = useState('');
   const [name, setName] = useState('');
+  const [isOpenToWork,setIsOpenToWork]=useState(false)
 
   const contacts = useSelector(state => state.contacts.contacts.items);
+
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -30,13 +32,17 @@ export const ContactForm = ({ onSubmit }) => {
     e.preventDefault();
     const isExist = contacts.find(user => user.name === name);
     if (!isExist) {
-      const newContact = {id: nanoid(),name ,phone:number};
+      const newContact = {id: nanoid(),name ,isOpenToWork,phone:number};
       // console.log(newContact)
       dispatch(addContact(newContact));
     } else alert(`${name} is already in contact`);
     setNumber('');
     setName('');
   };
+
+  const handleisOpenToWork=(e)=>{setIsOpenToWork(e.target.checked)};
+  
+
 
 
   // handleChange  = e => {
@@ -47,8 +53,6 @@ export const ContactForm = ({ onSubmit }) => {
 
   return (
     <form action="" className="" onSubmit={handleSubmit}>
-      {/* ставимо на форму onSubmit={this.handleSubmit} а на батон не вішаємо по */}
-      {/* Name input */}
       <div className="mb-3">
         <label htmlFor="name" className="form-label">
           Name
@@ -91,11 +95,11 @@ export const ContactForm = ({ onSubmit }) => {
           parentheses and can start with +
         </div>
       </div>
-{/* isOpenToWork */}
-<div class="form-check form-switch" style={{marginBottom:"10px"}}>
-  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" />
-  <label class="form-check-label" for="flexSwitchCheckChecked">isOpenToWork</label>
-</div>
+    {/* isOpenToWork */}
+    <div className="form-check form-switch" style={{marginBottom:"10px"}}>
+        <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onClick={handleisOpenToWork}/>
+        <label className="form-check-label" htmlFor="flexSwitchCheckChecked">isOpenToWork</label>
+    </div>
 
       <button type="submit" className="btn btn-primary">
         Add contact
@@ -104,4 +108,4 @@ export const ContactForm = ({ onSubmit }) => {
   );
 };
 
-ContactForm.propType = { onSubmit: PropTypes.func.isRequired };
+// ContactForm.propType = { onSubmit: PropTypes.func.isRequired };

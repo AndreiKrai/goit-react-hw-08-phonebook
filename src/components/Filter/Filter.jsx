@@ -1,11 +1,22 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from 'redux/Slice/PhoneBookSlice';
+import { setFilter, setIsOpenToWork } from 'redux/Slice/PhoneBookSlice';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const handleChange = e => dispatch(setFilter(e.target.value));
+
   const filter = useSelector(state => state.contacts.filter);
+
+
+  const handleChange = e => {
+    dispatch(setFilter(e.target.value));
+  };
+
+  const handleRadioBtnChange = e => {
+    dispatch(setIsOpenToWork(e.target.value==='isOpenToWork'));
+
+    console.log(e.target.value);
+  };
 
   return (
     <form action="">
@@ -30,31 +41,33 @@ export const Filter = () => {
           example Adrian, Jacob Mercer, Charles de Batz de Castelmore
           d'Artagnan.
         </div>
-        <div class="form-check">
+        {/* -------------Radiobuttons -------------*/}
+        <div className="form-check">
           <input
-            class="form-check-input"
+            onClick={handleRadioBtnChange}
+            className="form-check-input"
             type="radio"
             name="flexRadioDefault"
             id="flexRadioDefault1"
-            value='isOpenToWork'            
+            value="isOpenToWork"
+            // checked={`${isOpenToWork}`}
 
           />
-          {/* -------------Radiobuttons */}
-          <label class="form-check-label" for="flexRadioDefault1">
+          <label className="form-check-label"htmlFor="flexRadioDefault1">
             OpenToWork
           </label>
         </div>
-        <div class="form-check">
+        <div className="form-check">
           <input
-            class="form-check-input"
+            onClick={handleRadioBtnChange}
+            className="form-check-input"
             type="radio"
             name="flexRadioDefault"
             id="flexRadioDefault2"
-            value='NotisOpenToWork'
-            checked
-
+            value="NotisOpenToWork"
+            // checked={`${isOpenToWork}`}
           />
-          <label class="form-check-label" for="flexRadioDefault2">
+          <label className="form-check-label"htmlFor="flexRadioDefault2">
             NotOpenToWork
           </label>
         </div>
@@ -63,7 +76,7 @@ export const Filter = () => {
   );
 };
 
-Filter.propTypes = {
-  onInput: PropTypes.func.isRequired,
-  filter: PropTypes.string,
-};
+// Filter.propTypes = {
+//   onInput: PropTypes.func.isRequired,
+//   filter: PropTypes.string,
+// };

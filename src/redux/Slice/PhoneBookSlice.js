@@ -4,17 +4,18 @@ import { addContact, deleteContact, fetchContacts } from '../thunk';
 const initialState = {
   contacts: { items: [], isLoading: 'false', error: null },
   filter: '',
-  filterRadioBtn:"isOpenToWork"
+  isOpenToWork:true
 };
 
 export const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
-  redusers: {
+  reducers: {
     setFilter: (state, action) => {
       console.log("action.payload",action.payload)
       state.filter = action.payload;
     },
+    setIsOpenToWork:(state, action)=>{state.isOpenToWork=action.payload}
   },
   extraReducers: {
     [fetchContacts.pending](state) {
@@ -68,5 +69,5 @@ export const contactsSlice = createSlice({
   // },
 });
 
-export const {setFilter} = contactsSlice.actions;
+export const {setFilter,setIsOpenToWork} = contactsSlice.actions;
 export const contactsReduser = contactsSlice.reducer;
