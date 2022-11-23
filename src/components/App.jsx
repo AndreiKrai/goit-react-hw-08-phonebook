@@ -1,9 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import ContactList from './ContactList/ContactList';
-import {Filter} from './Filter/Filter';
-import {ContactForm} from './ContactForm/ContactForm';
-import { addContact,removeContact, setFilter } from 'redux/Slice/PhoneBookSlice';
-import { nanoid } from 'nanoid';
+import { Filter } from './Filter/Filter';
+import { ContactForm } from './ContactForm/ContactForm';
+import { fetchContacts } from 'redux/thunk';
+import { useEffect } from 'react';
+
 export const App = () => {
   // const CONTACTS_LOCAL_STORAGE = 'contactList';
   // const contactLocalStorage = localStorage.getItem(CONTACTS_LOCAL_STORAGE);
@@ -11,18 +12,15 @@ export const App = () => {
   // const [contacts, setContacts] = useState([]);
   // const [filter, setFilter] = useState('');
 
-  const dispatch=useDispatch()   
-  const contacts=useSelector(state=>state.contacts.contacts)  
-  const filter=useSelector(state=>state.contacts.filter)  
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts.contacts.items);
+  const filter = useSelector(state => state.contacts.filter);
 
-// -------------LocalStorage--------------------
+  // -------------LocalStorage--------------------
 
-  // useEffect(() => {
-  //   if (contactLocalStorage) {
-  //     setContacts(JSON.parse(contactLocalStorage));
-  //   }
-  // }, []);
-
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   // useEffect(() => {
   //   localStorage.setItem(CONTACTS_LOCAL_STORAGE, JSON.stringify(contacts));
@@ -31,15 +29,6 @@ export const App = () => {
   // console.log('contacts',contacts)
   // console.log('filter',filter)
 
-
-const handleAddContact=(name, number)=>{
-  const isExist = contacts.find(user => user.name === name);
-    if (!isExist) {
-    const newContact = {name,number, id:nanoid()}
-  dispatch(addContact(newContact))}
-  else alert(`${name} is already in contact`);
-}
-
   // const handleAddContact = (name, number) => {
   //   const isExist = contacts.find(user => user.name === name);
   //   if (!isExist) {
@@ -47,7 +36,7 @@ const handleAddContact=(name, number)=>{
   //   } else alert(`${name} is already in contact`);
   // };
 
-  const handleChange=e=>dispatch(setFilter(e.target.value))
+  // const handleChange = e => dispatch(setFilter(e.target.value));
   // const handleChange = e => setFilter(e.target.value);
 
   // handleChange = e => {
@@ -57,10 +46,10 @@ const handleAddContact=(name, number)=>{
   // };
 
   // ------------тимчасово
-  const handleRemoveContact = id =>dispatch(removeContact(id))
+  // const handleRemoveContact = id => dispatch(removeContact(id));
   // const handleRemoveContact = id =>
   //   setContacts(contacts.filter(contact => contact.id !== id));
-// ---------------------
+  // ---------------------
 
   // handleRemoveContact = id => {
   //   this.setState(prevState => {
@@ -69,19 +58,18 @@ const handleAddContact=(name, number)=>{
   //     };
   //   });
   // };
-
+  console.log('contacts', contacts);
   const filteredArr = contacts.filter(user =>
     user.name.toLowerCase().includes(filter.toLowerCase())
   );
-const style ={marginRight:"auto",marginLeft:"auto", width: "400px"};
+  const style = { marginRight: 'auto', marginLeft: 'auto', width: '620px' };
   return (
-    
-    <div className='form-check' style={style}>
+    <div className="form-check" style={style}>
       <h1>Phonebook</h1>
-      <ContactForm onSubmit={handleAddContact} />
+      <ContactForm />
       <h2>Contacts</h2>
-      <Filter onInput={handleChange} filter={filter} />
-      <ContactList contacts={filteredArr} onBtnClick={handleRemoveContact} />
+      <Filter  />
+      <ContactList contacts={filteredArr}/>
     </div>
   );
 };
