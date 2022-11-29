@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/thunk';
+// import {useSelector } from 'react-redux';
 
 export const ContactForm = ({ onSubmit }) => {
 
@@ -9,7 +8,7 @@ export const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [isOpenToWork,setIsOpenToWork]=useState(false)
 
-  const contacts = useSelector(state => state.contacts.contacts.items);
+  // const contacts = useSelector(state => state.contacts.contacts.items);
 
 const handleSubmit =e=>{
   e.preventDefault ();
@@ -103,4 +102,4 @@ const handleSubmit =e=>{
   );
 };
 
-// ContactForm.propType = { onSubmit: PropTypes.func.isRequired };
+ContactForm.propType = { onSubmit: PropTypes.func.isRequired };

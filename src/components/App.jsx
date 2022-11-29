@@ -4,7 +4,6 @@ import { Filter } from './Filter/Filter';
 import { ContactForm } from './ContactForm/ContactForm';
 import { addContact, deleteContact, fetchContacts } from 'redux/thunk';
 import { useEffect } from 'react';
-import Pagination from './Pagination/Pagination';
 import { nanoid } from 'nanoid';
 
 
@@ -55,7 +54,6 @@ export const App = () => {
       <h2>Contacts</h2>
       <Filter />
       <ContactList contacts={filteredArr(contacts)} onclick={handleRemoveContact} />
-      {/* <Pagination/> */}
     </div>
   );
 };
