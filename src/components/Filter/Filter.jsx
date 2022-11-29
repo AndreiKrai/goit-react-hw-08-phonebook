@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter, setIsOpenToWork } from 'redux/Slice/PhoneBookSlice';
 
@@ -76,7 +75,3 @@ export const Filter = () => {
   );
 };
 
-// Filter.propTypes = {
-//   onInput: PropTypes.func.isRequired,
-//   filter: PropTypes.string,
-// };
