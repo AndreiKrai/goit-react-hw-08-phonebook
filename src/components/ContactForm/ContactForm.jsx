@@ -1,18 +1,23 @@
-import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/thunk';
 
 export const ContactForm = ({ onSubmit }) => {
-  // state = { number: '', name: '' };
+
   const [number, setNumber] = useState('');
   const [name, setName] = useState('');
   const [isOpenToWork,setIsOpenToWork]=useState(false)
 
   const contacts = useSelector(state => state.contacts.contacts.items);
 
-  const dispatch = useDispatch();
+const handleSubmit =e=>{
+  e.preventDefault ();
+  onSubmit(name,number,isOpenToWork);
+  setNumber('');
+    setName('');
+
+}
 
   const handleChange = e => {
     const { name } = e.target;
@@ -28,17 +33,7 @@ export const ContactForm = ({ onSubmit }) => {
     }
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const isExist = contacts.find(user => user.name === name);
-    if (!isExist) {
-      const newContact = {id: nanoid(),name ,isOpenToWork,phone:number};
-      // console.log(newContact)
-      dispatch(addContact(newContact));
-    } else alert(`${name} is already in contact`);
-    setNumber('');
-    setName('');
-  };
+  
 
   const handleisOpenToWork=(e)=>{setIsOpenToWork(e.target.checked)};
   

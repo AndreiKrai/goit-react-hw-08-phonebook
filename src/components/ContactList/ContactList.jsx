@@ -1,19 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/thunk';
-import { useState } from 'react';
 
-export default function ContactList({ contacts }) {
+export default function ContactList({ contacts,onClick }) { 
 
-  const dispatch = useDispatch();
-  const handleRemoveContact = id => dispatch(deleteContact(id));
-
-  const handleisOpenToWork=(e)=>{
-    
-  }
-
-  // const onDeleteBtnClick = ()=>{onBtnClick(contact.name)}
   return contacts.map(contact => {
     const style = { display: 'flex', alignItems: 'baseline',justifyContent: "space-between", marginLeft:'5px' };
     return (
@@ -25,7 +14,7 @@ export default function ContactList({ contacts }) {
         
         <button
           name={contact.name}
-          onClick={() => handleRemoveContact(contact.id)}
+          onClick={onClick}
           type="button"
           className="btn btn-primary"
           style={{marginLeft:'5px'}}

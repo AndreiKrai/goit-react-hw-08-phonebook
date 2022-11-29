@@ -11,13 +11,22 @@ export const fetchContacts = createAsyncThunk(
 
 export const deleteContact = createAsyncThunk(
   'contacts/deleteConacts',
-  async id => await fetchDeleteUser(id)
+  async (id,thunkApi) => { 
+    try{
+      const data=await fetchDeleteUser(id)
+      ;    console.log("deleteContact",data);
+
+    return data}
+    catch(e){return thunkApi.rejectWithValue(e)}}
 );
-export const addContact = createAsyncThunk(
+
+
+export const addContact = createAsyncThunk(   
   'contacts/addContact',
-  async contact => {
-    console.log(contact);
+  async(contact,thunkApi) => {
+    try{
      const data= await fetchAddUser(contact);
-    return data
+    return data}
+    catch(e){return thunkApi.rejectWithValue(e)}
   }
 );
