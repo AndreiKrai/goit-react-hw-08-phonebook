@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-// import {useSelector } from 'react-redux';
 
 export const ContactForm = ({ onSubmit }) => {
 
@@ -8,7 +7,6 @@ export const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [isOpenToWork,setIsOpenToWork]=useState(false)
 
-  // const contacts = useSelector(state => state.contacts.contacts.items);
 
 const handleSubmit =e=>{
   e.preventDefault ();
@@ -32,18 +30,7 @@ const handleSubmit =e=>{
     }
   };
 
-  
-
   const handleisOpenToWork=(e)=>{setIsOpenToWork(e.target.checked)};
-  
-
-
-
-  // handleChange  = e => {
-  //   const{name}=e.target
-  //   console.log(name)
-  //    setState({ [name]: e.target.value });
-  // };
 
   return (
     <form action="" className="" onSubmit={handleSubmit}>

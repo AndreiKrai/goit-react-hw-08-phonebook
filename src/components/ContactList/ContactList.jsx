@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function ContactList({ contacts,onClick }) { 
+export default function ContactList ({ contacts, onClick }) { 
 
   return contacts.map(contact => {
     const style = { display: 'flex', alignItems: 'baseline',justifyContent: "space-between", marginLeft:'5px' };
@@ -14,7 +14,7 @@ export default function ContactList({ contacts,onClick }) {
         
         <button
           name={contact.name}
-          onClick={onClick}
+          onClick={()=>onClick(contact.id)}
           type="button"
           className="btn btn-primary"
           style={{marginLeft:'5px'}}
@@ -31,8 +31,8 @@ ContactList.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
+      number: PropTypes.string,
     })
   ),
-  onBtnClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

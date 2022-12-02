@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { selectFilter } from 'redux/selectors.phoneBook';
 import { setFilter, setIsOpenToWork } from 'redux/Slice/PhoneBookSlice';
 
 export const Filter = () => {
   const dispatch = useDispatch();
 
-  const filter = useSelector(state => state.contacts.filter);
+  const filter = useSelector(selectFilter);
 
 
   const handleChange = e => {
@@ -13,8 +14,6 @@ export const Filter = () => {
 
   const handleRadioBtnChange = e => {
     dispatch(setIsOpenToWork(e.target.value==='isOpenToWork'));
-
-    console.log(e.target.value);
   };
 
   return (

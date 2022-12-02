@@ -12,7 +12,6 @@ export const contactsSlice = createSlice({
   initialState,
   reducers: {
     setFilter: (state, action) => {
-      console.log("action.payload",action.payload)
       state.filter = action.payload;
     },
     setIsOpenToWork:(state, action)=>{state.isOpenToWork=action.payload}
@@ -42,14 +41,11 @@ export const contactsSlice = createSlice({
     },
     [addContact.pending]: state => {state.contacts.isLoading = true},
     [addContact.fulfilled] :(state, action)=>{
-      // console.log(action.payload);
       state.contacts.items = [action.payload, ...state.contacts.items];
       state.contacts.isLoading = false;
       state.contacts.error = null;
     },
     [addContact.rejected]: (state, action) => {
-      // console.log(action);
-
       state.contacts.isLoading = false;
       state.contacts.error = action.payload;
     },
