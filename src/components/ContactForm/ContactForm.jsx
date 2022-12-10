@@ -2,19 +2,16 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 export const ContactForm = ({ onSubmit }) => {
-
   const [number, setNumber] = useState('');
   const [name, setName] = useState('');
-  const [isOpenToWork,setIsOpenToWork]=useState(false)
+  const [isOpenToWork, setIsOpenToWork] = useState(false);
 
-
-const handleSubmit =e=>{
-  e.preventDefault ();
-  onSubmit(name,number,isOpenToWork);
-  setNumber('');
+  const handleSubmit = e => {
+    e.preventDefault();
+    onSubmit(name, number, isOpenToWork);
+    setNumber('');
     setName('');
-
-}
+  };
 
   const handleChange = e => {
     const { name } = e.target;
@@ -30,7 +27,9 @@ const handleSubmit =e=>{
     }
   };
 
-  const handleisOpenToWork=(e)=>{setIsOpenToWork(e.target.checked)};
+  const handleisOpenToWork = e => {
+    setIsOpenToWork(e.target.checked);
+  };
 
   return (
     <form action="" className="" onSubmit={handleSubmit}>
@@ -55,7 +54,7 @@ const handleSubmit =e=>{
           d'Artagnan.
         </div>
       </div>
-      {/* Phone input */}
+      {/* Phone input. */}
       <div className="mb-3">
         <label htmlFor="phone" className="form-label">
           Phone
@@ -76,11 +75,18 @@ const handleSubmit =e=>{
           parentheses and can start with +
         </div>
       </div>
-    {/* isOpenToWork */}
-    <div className="form-check form-switch" style={{marginBottom:"10px"}}>
-        <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onClick={handleisOpenToWork}/>
-        <label className="form-check-label" htmlFor="flexSwitchCheckChecked">isOpenToWork</label>
-    </div>
+      {/* isOpenToWork */}
+      <div className="form-check form-switch" style={{ marginBottom: '10px' }}>
+        <input
+          className="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckChecked"
+          onClick={handleisOpenToWork}
+        />
+        <label className="form-check-label" htmlFor="flexSwitchCheckChecked">
+          isOpenToWork
+        </label>
+      </div>
 
       <button type="submit" className="btn btn-primary">
         Add contact
