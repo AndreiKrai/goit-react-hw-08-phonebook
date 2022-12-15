@@ -14,13 +14,10 @@ import {
   deleteContact,
   fetchContacts,
 } from 'redux/phoneBook/phonebook.thunk';
-import { selectIsLoggetIn } from 'redux/auth/auth.selectors';
-import { Navigate } from 'react-router-dom';
 
 export const ContactsPage = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  const isLoggetIn = useSelector(selectIsLoggetIn);
   const filteredArr = useSelector(selectfilteredArr);
 
   useEffect(() => {

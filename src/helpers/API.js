@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://connections-api.herokuapp.com';
+// const BASE_URL = 'https://connections-api.herokuapp.com';
 // another option of BASE_URL setting
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 

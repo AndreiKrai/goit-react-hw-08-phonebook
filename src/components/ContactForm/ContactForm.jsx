@@ -6,7 +6,6 @@ import { addContact } from 'redux/phoneBook/phonebook.thunk';
 export const ContactForm = () => {
   const [number, setNumber] = useState('');
   const [name, setName] = useState('');
-  const [isOpenToWork, setIsOpenToWork] = useState(false);
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
@@ -28,10 +27,6 @@ export const ContactForm = () => {
       default:
         break;
     }
-  };
-
-  const handleisOpenToWork = e => {
-    setIsOpenToWork(e.target.checked);
   };
 
   return (

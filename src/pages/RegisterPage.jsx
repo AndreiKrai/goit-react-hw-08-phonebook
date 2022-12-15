@@ -1,8 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-import { selectIsLoggetIn } from 'redux/auth/auth.selectors';
+import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/auth.thunk';
 
 export default function RegisterPage() {
@@ -10,7 +8,6 @@ export default function RegisterPage() {
   const [email, setMail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const isLoggetIn = useSelector(selectIsLoggetIn);
 
   const handleChange = e => {
     const { name } = e.target;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate, Outlet, Route } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { selectIsLoggetIn } from 'redux/auth/auth.selectors';
 
 // export default function PrivateRoute({ children, ...routeProps }) {
