@@ -1,21 +1,53 @@
 import axios from 'axios';
 
-const BASE_URL =
-  'https://637b964c10a6f23f7fad9ea0.mockapi.io/contacts/contacts/';
+const BASE_URL = 'https://connections-api.herokuapp.com';
+// another option of BASE_URL setting
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
-export const fetchData = async (params={limit:5}) => {
+// перехоплювач. робить щост перед запитом axios
+// axios.interceptors.request.use(
+//   function (config) {
+//     config.headers.Authorization = localStorage.getItem('token');
+//     return config;
+//   },
+//   function (error) {
+//     // Do something with request error
+//     return Promise.reject(error);
+//   }
+// );
 
-  const  data  = await axios.get(`${BASE_URL}`,{params});
-  return data.data;
+export const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = token;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = ``;
+  },
 };
 
-export const fetchDeleteUser = async id => {
-
-  const { data } = await axios.delete(`${BASE_URL}${id}`);
+export const fetchRegister = async usersData => {
+  const { data } = await axios.post(`/users/signup`, usersData);
+  token.set(data.token);
   return data;
 };
 
-export const fetchAddUser = async (contact) => {
-  const { data } = await axios.post(`${BASE_URL}`,contact);
-  return data;  
+export const fetchLogin = async usersData => {
+  const { data } = await axios.post(`/users/login`, usersData);
+  token.set(data.token);
+  return data;
+};
+
+export const fetchData = async () => {
+  const { data } = await axios.get('/contacts');
+  return data;
+};
+
+export const fetchDeleteUser = async id => {
+  const { data } = await axios.delete(`/contacts/${id}`);
+  return data;
+};
+
+export const fetchAddUser = async contact => {
+  const { data } = await axios.post(`/contacts`, contact);
+  return data;
 };

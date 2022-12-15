@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/phoneBook/phonebook.thunk';
 
-export const ContactForm = ({ onSubmit }) => {
+export const ContactForm = () => {
   const [number, setNumber] = useState('');
   const [name, setName] = useState('');
   const [isOpenToWork, setIsOpenToWork] = useState(false);
+  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit(name, number, isOpenToWork);
+    dispatch(addContact({ name, number }));
     setNumber('');
     setName('');
   };
@@ -74,18 +77,6 @@ export const ContactForm = ({ onSubmit }) => {
           Phone number must be digits and can contain spaces, dashes,
           parentheses and can start with +
         </div>
-      </div>
-      {/* isOpenToWork */}
-      <div className="form-check form-switch" style={{ marginBottom: '10px' }}>
-        <input
-          className="form-check-input"
-          type="checkbox"
-          id="flexSwitchCheckChecked"
-          onClick={handleisOpenToWork}
-        />
-        <label className="form-check-label" htmlFor="flexSwitchCheckChecked">
-          isOpenToWork
-        </label>
       </div>
 
       <button type="submit" className="btn btn-primary">

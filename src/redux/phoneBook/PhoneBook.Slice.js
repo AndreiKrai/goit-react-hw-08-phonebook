@@ -1,10 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addContact, deleteContact, fetchContacts } from '../thunk';
+import { addContact, deleteContact, fetchContacts } from './phonebook.thunk';
 
 const initialState = {
   contacts: { items: [], isLoading: 'false', error: null },
   filter: '',
-  isOpenToWork:"notSelected"
 };
 
 export const contactsSlice = createSlice({
@@ -14,7 +13,6 @@ export const contactsSlice = createSlice({
     setFilter: (state, action) => {
       state.filter = action.payload;
     },
-    setIsOpenToWork:(state, action)=>{state.isOpenToWork=action.payload}
   },
   extraReducers: {
     [fetchContacts.pending](state) {
@@ -29,9 +27,13 @@ export const contactsSlice = createSlice({
       state.contacts.isLoading = false;
       state.contacts.error = action.payload;
     },
-    [deleteContact.pending]: state => {state.contacts.isLoading = true},
+    [deleteContact.pending]: state => {
+      state.contacts.isLoading = true;
+    },
     [deleteContact.fulfilled]: (state, action) => {
-      state.contacts.items =state.contacts.items.filter(contact=>contact.id!==action.payload.id) ;
+      state.contacts.items = state.contacts.items.filter(
+        contact => contact.id !== action.payload.id
+      );
       state.contacts.isLoading = false;
       state.contacts.error = null;
     },
@@ -39,8 +41,10 @@ export const contactsSlice = createSlice({
       state.contacts.isLoading = false;
       state.contacts.error = action.payload;
     },
-    [addContact.pending]: state => {state.contacts.isLoading = true},
-    [addContact.fulfilled] :(state, action)=>{
+    [addContact.pending]: state => {
+      state.contacts.isLoading = true;
+    },
+    [addContact.fulfilled]: (state, action) => {
       state.contacts.items = [action.payload, ...state.contacts.items];
       state.contacts.isLoading = false;
       state.contacts.error = null;
@@ -65,5 +69,5 @@ export const contactsSlice = createSlice({
   // },
 });
 
-export const {setFilter,setIsOpenToWork} = contactsSlice.actions;
+export const { setFilter, setIsOpenToWork } = contactsSlice.actions;
 export const contactsReduser = contactsSlice.reducer;

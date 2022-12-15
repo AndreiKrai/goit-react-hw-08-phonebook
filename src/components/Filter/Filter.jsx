@@ -1,19 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilter } from 'redux/selectors.phoneBook';
-import { setFilter, setIsOpenToWork } from 'redux/Slice/PhoneBookSlice';
+import { selectFilter } from 'redux/phoneBook/selectors.phoneBook';
+import { setFilter, setIsOpenToWork } from 'redux/phoneBook/PhoneBook.Slice';
 
 export const Filter = () => {
   const dispatch = useDispatch();
 
   const filter = useSelector(selectFilter);
 
-
   const handleChange = e => {
     dispatch(setFilter(e.target.value));
   };
 
   const handleRadioBtnChange = e => {
-    dispatch(setIsOpenToWork(e.target.value==='isOpenToWork'));
+    dispatch(setIsOpenToWork(e.target.value === 'isOpenToWork'));
   };
 
   return (
@@ -39,38 +38,7 @@ export const Filter = () => {
           example Adrian, Jacob Mercer, Charles de Batz de Castelmore
           d'Artagnan.
         </div>
-        {/* -------------Radiobuttons -------------*/}
-        <div className="form-check">
-          <input
-            onClick={handleRadioBtnChange}
-            className="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault1"
-            value="isOpenToWork"
-            // checked={`${isOpenToWork}`}
-
-          />
-          <label className="form-check-label"htmlFor="flexRadioDefault1">
-            OpenToWork
-          </label>
-        </div>
-        <div className="form-check">
-          <input
-            onClick={handleRadioBtnChange}
-            className="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault2"
-            value="NotisOpenToWork"
-            // checked={`${isOpenToWork}`}
-          />
-          <label className="form-check-label"htmlFor="flexRadioDefault2">
-            NotOpenToWork
-          </label>
-        </div>
       </div>
     </form>
   );
 };
-
